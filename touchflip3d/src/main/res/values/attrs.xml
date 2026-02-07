@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RotateView2">
+        <attr name="frontImage" format="reference" />
+        <attr name="backImage" format="reference" />
+        <attr name="enableRotateX" format="boolean" />
+        <attr name="enableRotateY" format="boolean" />
+        <attr name="showShadows" format="boolean" />
+        <attr name="flipDirection" format="enum">
+            <enum name="vertical" value="0" />   <enum name="horizontal" value="1" /> </attr>
+        <attr name="autoRotate" format="boolean"/>
+        <attr name="showGlossyEffect" format="boolean" />
+    </declare-styleable>
+
+</resources>

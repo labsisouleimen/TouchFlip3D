@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <com.labsisouleimanedev.touchflip3d.RotateView2
+        android:id="@+id/rotateContainer"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:layout_marginTop="140dp"
+
+
+        app:enableRotateX="true"
+        app:enableRotateY="true"
+        app:flipDirection="horizontal"
+        app:autoRotate="false"
+        app:showGlossyEffect="false"
+        app:showShadows="false"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginTop="50dp"
+            app:cardCornerRadius="12dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/bank_card"
+
+                android:scaleType="fitXY" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginTop="50dp"
+            app:cardCornerRadius="12dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/bank_card2"
+
+                android:scaleType="fitXY" />
+        </androidx.cardview.widget.CardView>
+
+    </com.labsisouleimanedev.touchflip3d.RotateView2>
+
+</FrameLayout>

@@ -1,0 +1,3 @@
+include ':touchflip3d'
+include ':app'
+rootProject.name = "my3d"
