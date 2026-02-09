@@ -8,7 +8,7 @@ import android.content.res.TypedArray;
 import android.graphics.Camera;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.LinearGradient; // لعمل اللمعان
+import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -24,7 +24,7 @@ public class RotateView2 extends FrameLayout {
     private final Matrix matrix = new Matrix();
     private final Camera camera = new Camera();
     private final Paint shadowPaint = new Paint();
-    private final Paint glossyPaint = new Paint(); // Paint جديد لطبقة اللمعان
+    private final Paint glossyPaint = new Paint();
 
     private float rotationX = 0;
     private float rotationY = 0;
@@ -35,7 +35,7 @@ public class RotateView2 extends FrameLayout {
     private float touchDirectionY = 1.0f;
     private float touchDirectionX = 1.0f;
 
-    private boolean isXEnabled, isYEnabled, autoRotate, showShadows, showGlossyEffect; // إضافة showGlossyEffect
+    private boolean isXEnabled, isYEnabled, autoRotate, showShadows, showGlossyEffect;
     private int flipDirection;
     private boolean isAnimating = false;
     private ValueAnimator animator;
@@ -50,7 +50,7 @@ public class RotateView2 extends FrameLayout {
             flipDirection = a.getInt(R.styleable.RotateView2_flipDirection, 1);
             autoRotate = a.getBoolean(R.styleable.RotateView2_autoRotate, false);
             showShadows = a.getBoolean(R.styleable.RotateView2_showShadows, true);
-            showGlossyEffect = a.getBoolean(R.styleable.RotateView2_showGlossyEffect, false); // القيمة الافتراضية "false"
+            showGlossyEffect = a.getBoolean(R.styleable.RotateView2_showGlossyEffect, false);
         } finally {
             a.recycle();
         }
@@ -59,8 +59,7 @@ public class RotateView2 extends FrameLayout {
         setClipChildren(false);
         setClipToPadding(false);
 
-        // إعدادات الـ Paint الخاص باللمعان
-        glossyPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN)); // يجعل الألوان تندمج بشكل إضاءة
+        glossyPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
     }
 
     @Override
@@ -90,19 +89,17 @@ public class RotateView2 extends FrameLayout {
         isAnimating = false;
         invalidate();
     }
-    // دالة لتفعيل أو تعطيل الدوران حول المحور الأفقي (X)
+
     public void setEnableRotateX(boolean enabled) {
         this.isXEnabled = enabled;
-        invalidate(); // تحديث العرض
+        invalidate();
     }
 
-    // دالة لتفعيل أو تعطيل الدوران حول المحور العمودي (Y)
     public void setEnableRotateY(boolean enabled) {
         this.isYEnabled = enabled;
-        invalidate(); // تحديث العرض
+        invalidate();
     }
 
-    // --- هذا الجزء لم يتغير في منطق الدوران ---
     @Override
     protected void dispatchDraw(Canvas canvas) {
         if (getChildCount() < 2) {
@@ -133,19 +130,16 @@ public class RotateView2 extends FrameLayout {
             }
             super.dispatchDraw(canvas);
             if (showShadows) drawShadowOverlay(canvas);
-            // رسم اللمعان فوق الظل
             if (showGlossyEffect) drawGlossyEffect(canvas);
             canvas.restore();
         } else {
             super.dispatchDraw(canvas);
             if (showShadows) drawShadowOverlay(canvas);
-            // رسم اللمعان فوق الظل
             if (showGlossyEffect) drawGlossyEffect(canvas);
         }
 
         canvas.restore();
     }
-    // --- نهاية الجزء الذي لم يتغير ---
 
     private void drawShadowOverlay(Canvas canvas) {
         float intensity = Math.abs((float)(Math.cos(Math.toRadians(rotationX)) * Math.cos(Math.toRadians(rotationY))));
@@ -158,32 +152,25 @@ public class RotateView2 extends FrameLayout {
     }
 
     private void drawGlossyEffect(Canvas canvas) {
-        // حساب زاوية ميلان اللمعان بناءً على دوران Y
-        float angle = (rotationY % 360 + 360) % 360; // بين 0 و 360
-        float offset = getWidth() * (angle / 360f); // تحريك اللمعان من اليسار لليمين
+        float angle = (rotationY % 360 + 360) % 360;
+        float offset = getWidth() * (angle / 360f);
 
-        // تحديد بداية ونهاية التدرج اللوني (اللمعان)
-        // يبدأ شفاف، ثم أبيض، ثم شفاف مرة أخرى
         LinearGradient gradient = new LinearGradient(
-                0 + offset * 1.5f - getWidth() / 2f, // نقطة بداية X
+                0 + offset * 1.5f - getWidth() / 2f,
                 0,
-                getWidth() + offset * 1.5f - getWidth() / 2f, // نقطة نهاية X
+                getWidth() + offset * 1.5f - getWidth() / 2f,
                 getHeight(),
-                new int[]{Color.TRANSPARENT, Color.argb(120, 255, 255, 255), Color.TRANSPARENT}, // أبيض شبه شفاف في المنتصف
-                new float[]{0.0f, 0.5f, 1.0f}, // توزيع الألوان
+                new int[]{Color.TRANSPARENT, Color.argb(120, 255, 255, 255), Color.TRANSPARENT},
+                new float[]{0.0f, 0.5f, 1.0f},
                 Shader.TileMode.CLAMP
         );
         glossyPaint.setShader(gradient);
 
         canvas.save();
-        // نقل اللمعان لمركز البطاقة
-        canvas.translate(0, 0);
-        // تدوير اللمعان قليلاً ليعطي إحساساً بالميلان
         canvas.rotate(25, getWidth() / 2f, getHeight() / 2f);
         canvas.drawRect(0, 0, getWidth(), getHeight(), glossyPaint);
         canvas.restore();
     }
-
 
     private void applyTransformation(Canvas canvas) {
         float centerX = getWidth() / 2f;
@@ -211,8 +198,20 @@ public class RotateView2 extends FrameLayout {
         canvas.concat(matrix);
     }
 
+    // --- التعديل المضاف هنا: لمنع الأب من اعتراض اللمس ---
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            getParent().requestDisallowInterceptTouchEvent(true);
+        }
+        return super.onInterceptTouchEvent(ev);
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        // السطر المضاف لضمان السلطة أثناء الحركة
+        getParent().requestDisallowInterceptTouchEvent(true);
+
         if (autoRotate) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
