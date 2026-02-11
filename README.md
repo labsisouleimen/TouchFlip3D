@@ -61,15 +61,33 @@ You must place exactly **two** children inside `RotateView2`:
 </com.labsisouleimanedev.touchflip3d.RotateView2>
 
 
-## ⚙️ Attributes
+---
+
+## ⚙️ XML Attributes
+Use these attributes in your layout file to customize the behavior:
 
 | Attribute | Description | Default |
-|-----------|-------------|---------|
-| `app:flipDirection` | `horizontal` (1) or `vertical` (0) | `horizontal` |
-| `app:showShadows` | Enable/Disable 3D shadows during movement | `true` |
-| `app:showGlossyEffect` | Enable/Disable the shiny light effect | `false` |
-| `app:autoRotate` | If true, the card flips 180° when clicked | `false` |
-| `app:enableRotateX` | Allow/Lock rotation on X axis | `true` |
-| `app:enableRotateY` | Allow/Lock rotation on Y axis | `true` |
+| :--- | :--- | :--- |
+| `app:flipDirection` | `0` for Vertical, `1` for Horizontal | `1` |
+| `app:showShadows` | Toggle 3D depth shadows | `true` |
+| `app:showGlossyEffect` | Toggle shiny light reflection | `false` |
+| `app:enableRotateX` | Enable/Disable X-axis rotation | `true` |
+| `app:enableRotateY` | Enable/Disable Y-axis rotation | `true` |
+| `app:autoRotate` | Full 180° flip on click | `false` |
+
+---
+
+## 💻 Public Methods (Java/Kotlin)
+RotateView2 flipView = findViewById(R.id.flipView);
+
+// Reset card to original flat state
+flipView.resetRotation();
+
+// Change axis: 0 (Vertical) | 1 (Horizontal)
+flipView.setFlipDirection(1);
+
+// Lock or unlock rotation axes
+flipView.setEnableRotateX(true);
+flipView.setEnableRotateY(true);
 ## 📱 RecyclerView & ViewPager2 Support
 Since **v1.1**, the library handles touch events using `requestDisallowInterceptTouchEvent`. This means you can use the card inside lists or pagers without any scrolling issues. It's plug-and-play!
