@@ -1,5 +1,8 @@
 # TouchFlip3D 💳🔄
 An interactive 3D Flip Card library for Android that supports smooth touch rotation, glossy effects, and shadows.
+![JitPack](https://jitpack.io/v/labsisouleimen/TouchFlip3D.svg)
+![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)
+![Android](https://img.shields.io/badge/Platform-Android-brightgreen.svg)
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/8f33362f-2d24-4d14-ac08-a1f1fc2b5d7e" width="320">
@@ -38,15 +41,26 @@ You must place exactly **two** children inside `RotateView2`:
     android:id="@+id/flipView"
     android:layout_width="320dp"
     android:layout_height="220dp"
+    app:flipDirection="horizontal"
     app:showGlossyEffect="true"
     app:showShadows="true"
-    app:flipDirection="horizontal">
+    app:enableRotateX="true" 
+    app:enableRotateY="true"
+    app:autoRotate="false">
 
-    <androidx.cardview.widget.CardView ... />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="#F1F1F1" />
 
-    <androidx.cardview.widget.CardView ... />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="#FFFFFF" />
 
 </com.labsisouleimanedev.touchflip3d.RotateView2>
+
+
 ## ⚙️ Attributes
 
 | Attribute | Description | Default |
