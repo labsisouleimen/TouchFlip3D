@@ -19,11 +19,15 @@ allprojects {
         maven { url '[https://jitpack.io](https://jitpack.io)' }
     }
 }
+
 Add the dependency to your app/build.gradle:
 dependencies {
     implementation 'com.github.labsisouleimen:TouchFlip3D:v1.1'
 }
-✨ Features (v1.1 Update)
+```
+---
+
+## ✨ Features (v1.1 Update)
 Smooth 3D Rotation: Interactive touch-based card flipping.
 
 Glossy Effect: Dynamic light reflections while moving.
@@ -59,7 +63,7 @@ You must place exactly **two** children inside `RotateView2`:
         app:cardBackgroundColor="#FFFFFF" />
 
 </com.labsisouleimanedev.touchflip3d.RotateView2>
-
+```
 
 ---
 
@@ -89,5 +93,6 @@ flipView.setFlipDirection(1);
 // Lock or unlock rotation axes
 flipView.setEnableRotateX(true);
 flipView.setEnableRotateY(true);
+
 ## 📱 RecyclerView & ViewPager2 Support
 Since **v1.1**, the library handles touch events using `requestDisallowInterceptTouchEvent`. This means you can use the card inside lists or pagers without any scrolling issues. It's plug-and-play!
