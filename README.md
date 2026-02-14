@@ -96,3 +96,14 @@ flipView.setEnableRotateY(true);
 
 ## 📱 RecyclerView & ViewPager2 Support
 Since **v1.1**, the library handles touch events using `requestDisallowInterceptTouchEvent`. This means you can use the card inside lists or pagers without any scrolling issues. It's plug-and-play!
+---
+
+## 📜 License
+This project is licensed under the **MIT License** - meaning you can freely use, modify, and distribute it, provided you give credit to the original author.
+
+---
+
+## 📩 Let's Connect
+**Developed by Souleimen Labsi **
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/souleimen-labsi-5937783ab/)
+
